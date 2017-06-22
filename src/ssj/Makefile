@@ -1,4 +1,4 @@
-GCC := g++
+GCC := g++ -std=c++11
 LD  := ld
 AR  := ar
 
@@ -6,7 +6,7 @@ LDFLAGS := -shared -fpic
 ARFLAGS := -crus
 CFLAGS  := -g -Wall -fpic
 
-DIR_INC := ../../include/ssj 
+DIR_INC := ../../include/ssj ../../include
 DIR_SRC := .
 DIR_OBJ := ./.obj
 DIR_LIB := ./.obj
@@ -28,11 +28,10 @@ ${DIR_OBJ}/%.o:${DIR_SRC}/%.cpp
 	$(GCC) $(CFLAGS) -o $@ -c $< ${INC} -g
 
 $(DYNAMIC_LIB):$(OBJ)
-	#$(LD) $(LDFLAGS) -o $(DIR_LIB)/$(SHARE_LIB) $(OBJ)
-	@echo ${ARFLAGS} $(DIR_LIB)/$(DYNAMIC_LIB) objis$(OBJ)
-	@echo $(DIR_LIB)/$(DYNAMIC_LIB)
+	@echo $(DIR_LIB)/$(DYNAMIC_LIB) $(DIR_LIB)/$(SHARE_LIB)
 	${AR} ${ARFLAGS} $(DIR_LIB)/$(DYNAMIC_LIB) $(OBJ)
 	@ctags -R -h".c.cpp.h" -o tags
+	#$(LD) $(LDFLAGS) -o $(DIR_LIB)/$(SHARE_LIB) $(OBJ)
 
 
 clean:
