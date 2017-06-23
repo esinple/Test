@@ -7,20 +7,24 @@
 AR	Makefile	/^AR  := ar$/;"	m
 ARFLAGS	Makefile	/^ARFLAGS := -crus$/;"	m
 CFLAGS	Makefile	/^CFLAGS  := -g -Wall -fpic$/;"	m
-DIR_INC	Makefile	/^DIR_INC := ..\/..\/include\/ssj ..\/..\/include$/;"	m
+DIR_INC	Makefile	/^DIR_INC := ..\/..\/include$/;"	m
 DIR_LIB	Makefile	/^DIR_LIB := .\/.obj$/;"	m
 DIR_OBJ	Makefile	/^DIR_OBJ := .\/.obj$/;"	m
 DIR_SRC	Makefile	/^DIR_SRC := .$/;"	m
 DYNAMIC_LIB	Makefile	/^DYNAMIC_LIB := $(LIB_NAME).a$/;"	m
 GCC	Makefile	/^GCC := g++ -std=c++11$/;"	m
-INC	Makefile	/^INC := -I${DIR_INC}$/;"	m
+GETCWD	Log.cpp	7;"	d
+INC	Makefile	/^INC := -I${DIR_INC} -I${DIR_INC}\/ssj -I${DIR_INC}\/log4cxx -I.\/$/;"	m
 LD	Makefile	/^LD  := ld$/;"	m
 LDFLAGS	Makefile	/^LDFLAGS := -shared -fpic$/;"	m
 LIB_NAME	Makefile	/^LIB_NAME    := libSSJ$/;"	m
+Log	Log.cpp	/^Log::Log()$/;"	f	class:Log
 OBJ	Makefile	/^OBJ := $(patsubst %.cpp, ${DIR_OBJ}\/%.o, $(notdir ${SRC}))$/;"	m
 SHARE_LIB	Makefile	/^SHARE_LIB   := $(LIB_NAME).so$/;"	m
 SRC	Makefile	/^SRC := $(wildcard ${DIR_SRC}\/*.cpp) $(wildcard ${DIR_SRC}\/*.cpp)$/;"	m
 Thread	Thread.cpp	/^Thread::Thread()$/;"	f	class:Thread
 static_lib_func_add	testLib.cpp	/^int static_lib_func_add(int i1, int i2)$/;"	f
 static_lib_func_mul	testLib.cpp	/^int static_lib_func_mul(int i1, int i2)$/;"	f
+test	Log.cpp	/^void Log::test()$/;"	f	class:Log
+~Log	Log.cpp	/^Log::~Log()$/;"	f	class:Log
 ~Thread	Thread.cpp	/^Thread::~Thread()$/;"	f	class:Thread
