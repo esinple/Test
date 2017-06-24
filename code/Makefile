@@ -8,7 +8,7 @@ LIB=-L$(LIB_PATH) -llog4cxx -lSSJ -lboost_system -lpthread -lboost_thread -lboos
 
 
 CC=g++
-CCFLAGS= -g -std=c++11 -DBOOST_LOG_DYN_LINK $(INCLUDE) $(LIB)
+CCFLAGS= -g -std=c++11 -DBOOST_ALL_DYN_LINK $(INCLUDE) $(LIB)
 
 TARGET = test
 
