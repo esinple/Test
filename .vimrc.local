@@ -19,3 +19,7 @@ map <leader>9 :b 9<CR>
 
 let g:airline_left_sep=''  " Slightly fancier than '>'
 let g:airline_right_sep='' " Slightly fancier than '<'
+
+set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
+set enc=utf8
+set fencs=utf8,gbk,gb2312,gb18030
