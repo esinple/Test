@@ -4,11 +4,11 @@ OBJ= $(patsubst %.cpp,$(ODIR)/%.o,$(SOURCE))
 LIB_PATH=/home/esinple/Test/lib
 INCLUDE_PATH=../include
 INCLUDE:=-I$(INCLUDE_PATH) -I$(INCLUDE_PATH)/ssj -I$(INCLUDE_PATH)/log4cxx -I$(INCLUDE_PATH)/boost
-LIB=-L$(LIB_PATH) -llog4cxx -lSSJ -lboost_system -lpthread -lboost_thread -lboost_log
+LIB=-L$(LIB_PATH) -llog4cxx -lSSJ -lpthread -lboost_thread -lboost_log -lboost_system -lboost_log_setup
 
 
 CC=g++
-CCFLAGS= -g -std=c++11 -DBOOST_ALL_DYN_LINK $(INCLUDE) $(LIB)
+CCFLAGS= -g -std=c++11 -DBOOST_ALL_DYN_LINK -DBOOST_LOG_DYN_LINK $(INCLUDE) $(LIB)
 
 TARGET = test
 
