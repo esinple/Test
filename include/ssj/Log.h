@@ -2,6 +2,7 @@
 #define __LOG_H__
 
 #include <boost/log/sources/severity_logger.hpp>
+#include <string>
 
 enum severity_level
 {
@@ -34,7 +35,10 @@ class Log
         ~Log();
 
     public:
-        bool Init();
+        bool Init(
+                const std::string& name,
+                uint32_t fileSize = 10 * 1024 * 1024 ,
+                uint32_t rollHour = 1);
 
         void Debug(const char *format,...);
         void Error(const char *format,...);

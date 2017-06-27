@@ -1,5 +1,5 @@
 #include "Log.h"
-
+#include <stdio.h>
 /*#include <boost/log/core.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/log/expressions.hpp>
@@ -45,12 +45,13 @@ Log::~Log()
 
 }
 
-bool Log::Init()
+bool Log::Init(const std::string& name,uint32_t fileSize,uint32_t rollHour)
 {
     typedef sinks::synchronous_sink< sinks::text_file_backend > file_sink;  
     shared_ptr< file_sink > sink(new file_sink(  
-                keywords::file_name = "test_%Y_%m_%d_%H.log",      // file name pattern  
-                keywords::rotation_size = 10 * 1024 * 1024 // rotation size, in characters  
+                keywords::open_mode = std::ios::app,
+                keywords::file_name = name + "%Y-%m-%d-%H.log",         // file name pattern  
+                keywords::rotation_size = fileSize  // rotation size, in characters  
                 ));  
 
     // Set up where the rotated files will be stored  
@@ -61,7 +62,7 @@ bool Log::Init()
                 ));
 
     // Upon restart, scan the target directory for files matching the file_name pattern  
-    sink->locked_backend()->scan_for_files();  
+    //sink->locked_backend()->scan_for_files();  
     //sink->locked_backend()->scan_for_files(sinks::file::scan_all);
 
     sink->set_formatter  
@@ -72,9 +73,9 @@ bool Log::Init()
          % expr::smessage  
         );
 
-    sink->locked_backend()->auto_flush(true);
+    //sink->locked_backend()->auto_flush(true);
 
-    sinks::file::rotation_at_time_interval(posix_time::hours(1));
+    sinks::file::rotation_at_time_interval(posix_time::hours(rollHour));
 
     boost::shared_ptr<logging::core> core = logging::core::get();
 
@@ -85,17 +86,29 @@ bool Log::Init()
     return true;
 }
 
+#define BuffSize 512
+
+#define FORMAT_MSG() \
+    static char buff[BuffSize] = {0}; \
+    va_list va; \
+    va_start(va,format); \
+    vsnprintf(buff,BuffSize-1,format,va); \
+    va_end(va); \
+
 void Log::Debug(const char *format,...)
 {
-    BOOST_LOG_SEV(lg_, eSL_Debug) << format;
+    FORMAT_MSG();
+    BOOST_LOG_SEV(lg_, eSL_Debug) << buff;
 }
 
 void Log::Error(const char *format,...)
 {
-    BOOST_LOG_SEV(lg_, eSL_Error) << format;
+    FORMAT_MSG();
+    BOOST_LOG_SEV(lg_, eSL_Error) << buff;
 }
 
 void Log::Info(const char *format,...)
 {
-    BOOST_LOG_SEV(lg_, eSL_Info) << format;
+    FORMAT_MSG();
+    BOOST_LOG_SEV(lg_, eSL_Info) << buff;
 }

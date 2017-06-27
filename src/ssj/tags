@@ -6,6 +6,7 @@
 !_TAG_PROGRAM_VERSION	5.8	//
 AR	Makefile	/^AR  := ar$/;"	m
 ARFLAGS	Makefile	/^ARFLAGS := -crus$/;"	m
+BuffSize	Log.cpp	89;"	d
 CFLAGS	Makefile	/^CFLAGS  := -g -Wall -fpic$/;"	m
 DIR_INC	Makefile	/^DIR_INC := ..\/..\/include$/;"	m
 DIR_LIB	Makefile	/^DIR_LIB := .\/.obj$/;"	m
@@ -15,11 +16,12 @@ DIR_SRC	Makefile	/^DIR_SRC := .$/;"	m
 DYNAMIC_LIB	Makefile	/^DYNAMIC_LIB := $(LIB_NAME).a$/;"	m
 Debug	Log.cpp	/^void Log::Debug(const char *format,...)$/;"	f	class:Log
 Error	Log.cpp	/^void Log::Error(const char *format,...)$/;"	f	class:Log
+FORMAT_MSG	Log.cpp	91;"	d
 GCC	Makefile	/^GCC := g++ -std=c++11 -DBOOST_ALL_DYN_LINK -DBOOST_LOG_DYN_LINK$/;"	m
 INC	Makefile	/^INC := -I${DIR_INC} -I${DIR_INC}\/ssj -I$(DIR_INC)\/boost -I.\/$/;"	m
 INC_LIB	Makefile	/^INC_LIB := -L$(DIR_LIB_PATH) -lboost_thread -lboost_log -lboost_system -lboost_log_setup  $/;"	m
 Info	Log.cpp	/^void Log::Info(const char *format,...)$/;"	f	class:Log
-Init	Log.cpp	/^bool Log::Init()$/;"	f	class:Log
+Init	Log.cpp	/^bool Log::Init(const std::string& name,uint32_t fileSize,uint32_t rollHour)$/;"	f	class:Log
 LD	Makefile	/^LD  := ld$/;"	m
 LDFLAGS	Makefile	/^LDFLAGS := -shared -fpic$/;"	m
 LIB_NAME	Makefile	/^LIB_NAME    := libSSJ$/;"	m
