@@ -9,12 +9,17 @@ ARFLAGS	Makefile	/^ARFLAGS := -crus$/;"	m
 CFLAGS	Makefile	/^CFLAGS  := -g -Wall -fpic$/;"	m
 DIR_INC	Makefile	/^DIR_INC := ..\/..\/include$/;"	m
 DIR_LIB	Makefile	/^DIR_LIB := .\/.obj$/;"	m
+DIR_LIB_PATH	Makefile	/^DIR_LIB_PATH := ..\/..\/lib$/;"	m
 DIR_OBJ	Makefile	/^DIR_OBJ := .\/.obj$/;"	m
 DIR_SRC	Makefile	/^DIR_SRC := .$/;"	m
 DYNAMIC_LIB	Makefile	/^DYNAMIC_LIB := $(LIB_NAME).a$/;"	m
-GCC	Makefile	/^GCC := g++ -std=c++11$/;"	m
-GETCWD	Log.cpp	7;"	d
-INC	Makefile	/^INC := -I${DIR_INC} -I${DIR_INC}\/ssj -I${DIR_INC}\/log4cxx -I.\/$/;"	m
+Debug	Log.cpp	/^void Log::Debug(const char *format,...)$/;"	f	class:Log
+Error	Log.cpp	/^void Log::Error(const char *format,...)$/;"	f	class:Log
+GCC	Makefile	/^GCC := g++ -std=c++11 -DBOOST_ALL_DYN_LINK -DBOOST_LOG_DYN_LINK$/;"	m
+INC	Makefile	/^INC := -I${DIR_INC} -I${DIR_INC}\/ssj -I$(DIR_INC)\/boost -I.\/$/;"	m
+INC_LIB	Makefile	/^INC_LIB := -L$(DIR_LIB_PATH) -lboost_thread -lboost_log -lboost_system -lboost_log_setup  $/;"	m
+Info	Log.cpp	/^void Log::Info(const char *format,...)$/;"	f	class:Log
+Init	Log.cpp	/^bool Log::Init()$/;"	f	class:Log
 LD	Makefile	/^LD  := ld$/;"	m
 LDFLAGS	Makefile	/^LDFLAGS := -shared -fpic$/;"	m
 LIB_NAME	Makefile	/^LIB_NAME    := libSSJ$/;"	m
@@ -25,6 +30,5 @@ SRC	Makefile	/^SRC := $(wildcard ${DIR_SRC}\/*.cpp) $(wildcard ${DIR_SRC}\/*.cpp
 Thread	Thread.cpp	/^Thread::Thread()$/;"	f	class:Thread
 static_lib_func_add	testLib.cpp	/^int static_lib_func_add(int i1, int i2)$/;"	f
 static_lib_func_mul	testLib.cpp	/^int static_lib_func_mul(int i1, int i2)$/;"	f
-test	Log.cpp	/^void Log::test()$/;"	f	class:Log
 ~Log	Log.cpp	/^Log::~Log()$/;"	f	class:Log
 ~Thread	Thread.cpp	/^Thread::~Thread()$/;"	f	class:Thread
