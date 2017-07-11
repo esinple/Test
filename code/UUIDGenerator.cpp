@@ -1,13 +1,5 @@
 #include "UUIDGenerator.h"
 
-UUIDGenerator::UUIDGenerator()
-{
-}
-
-UUIDGenerator::~UUIDGenerator()
-{
-}
-
 uuid UUIDGenerator::genUUID(const std::string& s)const
 {
     //static uuid base_id = string_generator()("{0123456789abcdef0123456789abcdef}");
